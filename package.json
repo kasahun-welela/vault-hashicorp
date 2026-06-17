@@ -1,0 +1,17 @@
+{
+  "name": "vault-try",
+  "version": "1.0.0",
+  "description": "to test vault hashicorp",
+  "license": "ISC",
+  "author": "kwk",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-vault": "^0.12.0"
+  }
+}
