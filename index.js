@@ -1,14 +1,15 @@
 const express = require("express");
-
+require("dotenv").config();
 const app = express();
 
 const vault = require("node-vault")({
   apiVersion: "v1",
-  endpoint: process.env.endpoint,
-  token: process.env.token,
+  endpoint: process.env.ENDPOINT,
+  token: process.env.TOKEN,
 });
 
-const PORT = process.env.PORT || 3000;
+const VAULT_PATH = process.env.VAULT_PATH;
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("Test from Kubernetes and Node.js!");
@@ -16,9 +17,9 @@ app.get("/", (req, res) => {
 
 app.get("/secret", async (req, res) => {
   try {
-    const result = await vault.read(process.env.path);
+    const result = await vault.read(VAULT_PATH);
     res.json({
-      vaultPath: process.env.VAULT_PATH,
+      vaultPath: VAULT_PATH,
       secret: result.data.data,
     });
     console.log(JSON.stringify(result, null, 2));
